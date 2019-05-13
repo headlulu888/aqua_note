@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class GenusController extends Controller
@@ -23,5 +25,25 @@ class GenusController extends Controller
             'name' => $genusName,
             'notes' => $notes
         ]);
+    }
+
+    /**
+     * @Route("/genus/{genusName}/notes")
+     * @Method("GET")
+     */
+    public function getNotesAction()
+    {
+        $notes = [
+            ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle', 'date' => 'Dec. 10, 2015'],
+            ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'akjflk;af;las,fl;asf', 'date' => 'Dec. 15, 2015'],
+            ['id' => 3, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'jsdlfjdslfkjslkfjslkfd', 'date' => 'Aug. 20, 2015']
+        ];
+
+        $data = [
+            'notes' => $notes
+        ];
+
+        // return new Response(json_encode($data));
+        return new JsonResponse($data);
     }
 }
