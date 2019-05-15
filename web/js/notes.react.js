@@ -12,6 +12,7 @@ var NoteSection = React.createClass({
 
     loadNotesFromServer: function() {
         $.ajax({
+            // url: this.props.url,
             url: this.props.url,
             success: function (data) {
                 this.setState({notes: data.notes});
