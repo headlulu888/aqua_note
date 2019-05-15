@@ -15,6 +15,11 @@ class GenusController extends Controller
      */
     public function showAction($genusName)
     {
+        $funFact = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
+
+        $funFact = $this->get('markdown.parser')
+            ->transform($funFact);
+
         $notes = [
             'Lorem ipsum dolor sit amet, consectetur adipisicing.',
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium.',
@@ -23,7 +28,7 @@ class GenusController extends Controller
 
         return $this->render('genus/show.html.twig', [
             'name' => $genusName,
-            'notes' => $notes
+            'funFact' => $funFact
         ]);
     }
 
